@@ -1,5 +1,6 @@
 var { Client } = require('pg')
 var express = require("express");
+var RateLimit = require('express-rate-limit');
 
 var port = 8080;
 
@@ -28,6 +29,15 @@ var main = async () => {
   var unused = "unused variable";
 
   var app = express();
+
+  // set up rate limiter: maximum of 100 requests per 15 minutes
+  var limiter = RateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 100, // max 100 requests per windowMs
+  });
+
+  // apply rate limiter to all requests
+  app.use(limiter);
 
   app.get('/hello', function (req, res) {
     res.send(`Hello, ${req.query.name}`)
