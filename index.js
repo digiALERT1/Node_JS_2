@@ -29,8 +29,10 @@ var main = async () => {
 
   var app = express();
 
+  var escape = require('escape-html');
+
   app.get('/hello', function (req, res) {
-    res.send(`Hello, ${req.query.name}`)
+    res.send(`Hello, ${escape(req.query.name)}`)
   })
 
   app.set("view engine", "pug");
