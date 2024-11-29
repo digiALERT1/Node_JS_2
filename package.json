@@ -11,6 +11,7 @@
     "express": "*",
     "pg": "*",
     "pug": "*",
-    "lodash": "4.17.20"
+    "lodash": "4.17.20",
+    "express-rate-limit": "^7.4.1"
   }
 }
